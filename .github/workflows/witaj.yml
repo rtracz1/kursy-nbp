@@ -1,4 +1,4 @@
-```yaml
+yaml
 name: Witaj z chmury
 on:
   workflow_dispatch:
@@ -19,4 +19,3 @@ jobs:
           head -2 /etc/os-release
       - name: Czy widzę Internet?
         run: curl -s "https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json"
-```
