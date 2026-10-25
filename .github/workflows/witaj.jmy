@@ -1,0 +1,30 @@
+### Zadanie 4.2. Pierwszy przepływ pracy uruchamiany ręcznie
+
+1. Proszę utworzyć **publiczne** repozytorium `kursy-nbp` z plikiem README.
+2. **Add file → Create new file**, nazwa: `.github/workflows/witaj.yml` (ukośniki utworzą katalogi), treść:
+
+```yaml
+name: Witaj z chmury
+on:
+  workflow_dispatch:
+
+jobs:
+  przywitanie:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kto i dlaczego mnie uruchomił?
+        run: |
+          echo "Uruchomił(a): ${{ github.actor }}"
+          echo "Zdarzenie:    ${{ github.event_name }}"
+          date -u
+      - name: Na jakiej maszynie działam?
+        run: |
+          echo "Rdzenie: $(nproc)"
+          free -h | head -2
+          head -2 /etc/os-release
+      - name: Czy widzę Internet?
+        run: curl -s "https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json"
+```
+
+3. **Commit changes…** z opisem `Pierwszy przepływ pracy`.
+4. Karta **Actions** → po lewej *Witaj z chmury* → przycisk **Run workflow** → **Run workflow**. Po chwili proszę kliknąć uruchomienie, potem zadanie `przywitanie` i rozwinąć kolejne kroki.
